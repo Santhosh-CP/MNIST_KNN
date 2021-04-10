@@ -16,15 +16,21 @@ def distance(p1, p2):
 
 def kNearestNeighbors(X, y, queryPoint, k=5):
     m = X.shape[0]  # Here, it's 100
-    Distances = []
+    distances = []
 
     for i in range(m):
         d = distance(queryPoint, X[i])
-        Distances.append(d)
+        distances.append((d, y[i]))
 
-    Distances = sorted(Distances)[:k]
+    distances = sorted(distances)
+    distances = np.array(distances)[:k]
 
-    return Distances
+    labels = distances[:, 1]
+
+    newLabels, values = np.unique(labels, return_counts=True)
+    prediction = newLabels[np.argmax(values)]
+
+    return prediction
 
 X, y = make_blobs(n_samples=100, n_features=2, centers=2, random_state=2)
 query_point = np.array([0, -5])
