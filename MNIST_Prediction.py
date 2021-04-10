@@ -28,23 +28,30 @@ def kNearestNeighbors(X, y, queryPoint, k=5):
 
     return prediction
 
-def main():
-    queryPoint = np.array([0, -5])
 
+
+
+def main():
     data = pd.read_csv("train.csv")
     mnist = data.values
     X = mnist[:, :-1]
     y = mnist[:, -1]
-    print("Out")
-    plt.imshow(X[789].reshape(28,28))
-    plt.show()
-    print("fullut")
+
+
 
     # Splitting into train and test
     X_train = X[0:15000]
     y_train = y[0:15000]
     X_test = X[15000:20000]
     y_test = y[15000:20000]
+
+    randomNumber = 533
+
+    plt.imshow(X_test[randomNumber].reshape(28,28))
+    plt.show()
+    prediction = kNearestNeighbors(X_train, y_train, X_test[randomNumber])
+    print(f"Actual Output = {y_test[randomNumber]}")
+    print(f"Predictd Output = {prediction}")
 
 
 main()
