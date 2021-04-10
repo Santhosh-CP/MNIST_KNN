@@ -56,11 +56,9 @@ def randomSample(model, X_test, y_test):
     num = len(y_test)
 
     val = random.randint(0, num-2)
-    print(f"Random Value = {X_test[val]}")
+    print(f"Actual Value = {y_test[val]}")
     pred = model.predict(X_test[val:val+1])
-    print(type(pred))
-    print(pred)
-    print(f"Predicted Value = {pred}")
+    print(f"Predicted Value = {pred[0]}")
     
     plt.imshow(X_test[val].reshape(28, 28))
     plt.show()
@@ -68,7 +66,8 @@ def randomSample(model, X_test, y_test):
 def main():
     # Reading the MNIST dataset
     data = pd.read_csv("train.csv")
-    print(data.shape)
+    print("MNIST dataset prediction using KNN Model")
+    print("Sample Data Size = ", len(data))
     mnist = data.values
     X = mnist[:, :-1]
     y = mnist[:, -1]
