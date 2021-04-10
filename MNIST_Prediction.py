@@ -1,13 +1,9 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
-import cv2
-from keras.datasets import mnist
-from sklearn.datasets import fetch_openml
+from sklearn.datasets import make_blobs
 from sklearn.model_selection import train_test_split
 
-from sklearn.datasets import make_blobs
 
 
 def distance(p1, p2):
@@ -32,7 +28,23 @@ def kNearestNeighbors(X, y, queryPoint, k=5):
 
     return prediction
 
-X, y = make_blobs(n_samples=100, n_features=2, centers=2, random_state=2)
-query_point = np.array([0, -5])
-dist = kNearestNeighbors(X, y, query_point)
-print(dist)
+def main():
+    queryPoint = np.array([0, -5])
+
+    data = pd.read_csv("train.csv")
+    mnist = data.values
+    X = mnist[:, :-1]
+    y = mnist[:, -1]
+    print("Out")
+    plt.imshow(X[789].reshape(28,28))
+    plt.show()
+    print("fullut")
+
+    # Splitting into train and test
+    X_train = X[0:15000]
+    y_train = y[0:15000]
+    X_test = X[15000:20000]
+    y_test = y[15000:20000]
+
+
+main()
