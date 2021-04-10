@@ -42,7 +42,6 @@ def  displayAccuracy(X_train, y_train, X_test, y_test):
     print(f"Number of correct predictions = {correct}")
 
     
-
 def libraryKNN(X_train, X_test, y_train, y_test):
     knn = KNeighborsClassifier()
     knn.fit(X_train, y_train)
@@ -56,10 +55,14 @@ def libraryKNN(X_train, X_test, y_train, y_test):
 def randomSample(model, X_test, y_test):
     num = len(y_test)
 
-    x = random.randint(0, num-1)
-    print(f"Random Value = {x}")
-    print(f"Predicted Value = {model.predict(x)[0]}")
-    plt.imshow(X_test.reshape(28, 28))
+    val = random.randint(0, num-2)
+    print(f"Random Value = {X_test[val]}")
+    pred = model.predict(X_test[val:val+1])
+    print(type(pred))
+    print(pred)
+    print(f"Predicted Value = {pred}")
+    
+    plt.imshow(X_test[val].reshape(28, 28))
     plt.show()
 
 def main():
