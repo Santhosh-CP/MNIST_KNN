@@ -1,10 +1,9 @@
-import numpy as np
-import pandas as pd
 import random
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
+import pandas as pd
 
 def distance(p1, p2):
     return np.sum((p2 - p1) ** 2) ** 0.5
